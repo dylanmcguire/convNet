@@ -1,5 +1,6 @@
 package myapp.nueralNet.networkBuilders;
 
+import myapp.io.ImageConfig;
 import myapp.nueralNet.networkGraph.GateGraphNode;
 import myapp.nueralNet.networkGraph.GraphNode;
 import myapp.nueralNet.networkGraph.NetworkGraph;
@@ -17,21 +18,21 @@ import java.util.*;
  */
 public class ImageClassifyingNetworkBuilder implements NetworkBuilder{
 
-    private final int pixelHeight;
-    private final int pixelWidth;
-    private final int numberOfColorChanels;
+
+    private final ImageConfig imageConfig;
     private final Random random = new Random();
 
-    public ImageClassifyingNetworkBuilder(int pixelHeight, int pixelWidth, int numberOfColorChanels) {
-        this.pixelHeight = pixelHeight;
-        this.pixelWidth = pixelWidth;
-        this.numberOfColorChanels = numberOfColorChanels;
+    public ImageClassifyingNetworkBuilder(ImageConfig imageConfig) {
+        this.imageConfig = imageConfig;
     }
 
 
     @Override
     public Collection<Operand> build(NetworkGraph networkGraph) {
-        int numInputs = pixelHeight * pixelWidth * numberOfColorChanels;
+
+        int numInputs = imageConfig.getMaxHeight() * imageConfig.getMaxWidth()
+                * imageConfig.getNumberOfColorChannels();
+
         final ArrayList<Operand> inputOperands = new ArrayList<>();
 
         String lastGateName = "";
