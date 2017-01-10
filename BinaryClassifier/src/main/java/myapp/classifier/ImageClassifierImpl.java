@@ -20,7 +20,7 @@ public class ImageClassifierImpl implements ImageClassifier{
 
         int i = 0;
         for (Operand operand : operands) {
-            operand.setValue(flattenedImage[i]);
+            operand.setValue(i < flattenedImage.length ? flattenedImage[i] : 0);
             i++;
         }
 

@@ -43,7 +43,7 @@ public class SimpleBinaryClassifier {
 //        System.out.println(networkGraph.evaluate().getValue());
 
         final NetworkGraph networkGraph = new NetworkGraphImpl();
-        final NetworkBuilder networkBuilder = new ImageClassifyingNetworkBuilder(32, 32, 3);
+        final NetworkBuilder networkBuilder = new ImageClassifyingNetworkBuilder(110, 110, 3);
         final Collection<Operand> inputs = networkBuilder.build(networkGraph);
         final ImageClassifier imageClassifier = new ImageClassifierImpl();
         final Trainer trainer = new ImageTrainer(500, new LabeledImageProviderImpl(new File("/Users/dylan/101_ObjectCategories")),"butterfly", imageClassifier);
