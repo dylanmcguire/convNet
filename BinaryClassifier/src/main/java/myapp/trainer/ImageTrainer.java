@@ -1,16 +1,17 @@
 package myapp.trainer;
 
-import myapp.nueralNet.NetworkGraph;
+import myapp.classifier.ImageClassifier;
+import myapp.io.LabeledImage;
+import myapp.io.LabeledImageProvider;
+import myapp.nueralNet.networkGraph.NetworkGraph;
 import myapp.nueralNet.Operand;
-import org.apache.commons.math3.analysis.function.Sigmoid;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Random;
+
 
 /**
  * @author Dylan McGuire
@@ -18,50 +19,56 @@ import java.util.Random;
 public class ImageTrainer implements Trainer{
 
     private int reps;
-    private LabledImageProvider labledImageProvider;
+    private LabeledImageProvider labeledImageProvider;
     private String desiredLabel;
-    private ImageRunner imageRunner;
+    private ImageClassifier imageClassifier;
 
 
-    public ImageTrainer(int reps, LabledImageProvider labledImageProvider, String desiredLabel, ImageRunner imageRunner) {
+    public ImageTrainer(int reps, LabeledImageProvider labeledImageProvider, String desiredLabel, ImageClassifier imageClassifier) {
         this.reps = reps;
-        this.labledImageProvider = labledImageProvider;
+        this.labeledImageProvider = labeledImageProvider;
         this.desiredLabel = desiredLabel;
-        this.imageRunner = imageRunner;
+        this.imageClassifier = imageClassifier;
     }
 
 
     public void train(NetworkGraph networkGraph, Collection<Operand> operands){
 
-        final ArrayList<String> labledImageNames = new ArrayList<String>(labledImageProvider.getAvailableImageNames());
+        final ArrayList<String> labeledImageNames = new ArrayList<>(labeledImageProvider.getAvailableImageNames());
 
-        for (int pass = 0; pass < 100; pass++) {
-            for (String imageName : labledImageNames){
+        for (int pass = 0; pass < 15; pass++) {
+            for (String imageName : labeledImageNames){
                 try {
-                    System.out.println("Loading Image: " + imageName);
-                    final LabledImage labledImage = labledImageProvider.getLabledImageByName(imageName);
+                    System.out.println("=====================================================");
+                    System.out.println("Training on image: " + imageName);
+                    System.out.println("=====================================================");
+                    final LabeledImage labeledImage = labeledImageProvider.loadLabeledImageByName(imageName);
                     for (int n = 0; n < reps; n++) {
 
-                        if (labledImage.getImage() != null) {
+                        if (labeledImage.getImage() != null) {
 
-                            final Operand operand = imageRunner.run(labledImage.getImage(), networkGraph, operands);
+                            final Operand operand = imageClassifier.classifyImage(labeledImage.getImage(), networkGraph, operands);
 
-                            System.out.println("Bounded Value: " + operand.getValue());
+                            System.out.println("Value: " + operand.getValue());
 
-                            if (labledImage.getLabel().equals(desiredLabel) && operand.getValue() < 0.75) {
-                                System.out.println("pulling up");
+                            if (labeledImage.getLabel().equals(desiredLabel) && operand.getValue() < 0.75) {
+                                System.out.println("Pulling up");
                                 operand.setGradient(1);
-                            } else if (!labledImage.getLabel().equals(desiredLabel) && operand.getValue() > 0.25){
-                                System.out.println("pulling down");
+                            } else if (!labeledImage.getLabel().equals(desiredLabel) && operand.getValue() > 0.25){
+                                System.out.println("Pulling down");
                                 operand.setGradient(-1);
                             } else {
+                                System.out.println("No need to pull");
+                                System.out.println("----------------------------------------------");
                                 break;
                             }
 
                             networkGraph.backprop();
 
                             System.out.println("testing effect");
-                            imageRunner.run(labledImage.getImage(), networkGraph, operands);
+                            final Operand secondPassOperand = imageClassifier.classifyImage(labeledImage.getImage(), networkGraph, operands);
+
+                            System.out.println("Value: " + secondPassOperand.getValue());
 
                             System.out.println("----------------------------------------------");
                         }
@@ -71,7 +78,7 @@ public class ImageTrainer implements Trainer{
                 }
             }
 
-            Collections.shuffle(labledImageNames);
+            Collections.shuffle(labeledImageNames);
         }
 
     }

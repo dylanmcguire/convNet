@@ -2,7 +2,7 @@ package myapp.binaryClassification;
 
 
 import myapp.nueralNet.Operand;
-import myapp.nueralNet.gates.Gate;
+import myapp.nueralNet.Gate;
 import myapp.nueralNet.gates.MultiplyGate;
 
 /**

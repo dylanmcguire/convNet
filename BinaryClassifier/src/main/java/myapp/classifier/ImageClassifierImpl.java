@@ -1,7 +1,7 @@
-package myapp.trainer;
+package myapp.classifier;
 
-import myapp.nueralNet.NetworkGraph;
 import myapp.nueralNet.Operand;
+import myapp.nueralNet.networkGraph.NetworkGraph;
 import org.apache.commons.math3.analysis.function.Sigmoid;
 
 import java.awt.*;
@@ -11,10 +11,11 @@ import java.util.Collection;
 /**
  * @author Dylan McGuire
  */
-public class ImageRunner {
+public class ImageClassifierImpl implements ImageClassifier{
 
 
-    public Operand run (BufferedImage image, NetworkGraph networkGraph, Collection<Operand> operands){
+    @Override
+    public Operand classifyImage(BufferedImage image, NetworkGraph networkGraph, Collection<Operand> operands) {
         float[] flattenedImage = flattenImage(image);
 
         int i = 0;
@@ -24,8 +25,6 @@ public class ImageRunner {
         }
 
         final Operand operand = networkGraph.evaluate();
-
-//        System.out.println("Unbounded Value: " + operand.getValue());
 
         final Sigmoid sigmoid = new Sigmoid();
         operand.setValue( (float) sigmoid.value((double)operand.getValue()));
@@ -52,5 +51,4 @@ public class ImageRunner {
 
         return flattenedImage;
     }
-
 }

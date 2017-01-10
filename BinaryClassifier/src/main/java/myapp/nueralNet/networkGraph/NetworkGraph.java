@@ -1,4 +1,5 @@
-package myapp.nueralNet;;
+package myapp.nueralNet.networkGraph;;import myapp.nueralNet.Operand;
+import myapp.nueralNet.networkGraph.GraphNode;
 
 /**
  * @author Dylan McGuire

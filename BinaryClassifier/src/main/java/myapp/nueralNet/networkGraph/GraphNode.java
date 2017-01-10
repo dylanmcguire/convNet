@@ -1,4 +1,6 @@
-package myapp.nueralNet;
+package myapp.nueralNet.networkGraph;
+
+import myapp.nueralNet.Operand;
 
 import java.util.Collection;
 

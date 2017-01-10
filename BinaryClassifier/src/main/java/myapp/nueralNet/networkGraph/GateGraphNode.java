@@ -1,6 +1,7 @@
-package myapp.nueralNet;
+package myapp.nueralNet.networkGraph;
 
-import myapp.nueralNet.gates.Gate;
+import myapp.nueralNet.Operand;
+import myapp.nueralNet.Gate;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +9,7 @@ import java.util.Collection;
 /**
  * @author Dylan McGuire
  */
-public class GateGraphNode implements GraphNode{
+public class GateGraphNode implements GraphNode {
 
     private final Gate gate;
     private final Collection<String> inputNames;

@@ -1,7 +1,5 @@
 package myapp.nueralNet.networkGraph;
 
-import myapp.nueralNet.GraphNode;
-import myapp.nueralNet.NetworkGraph;
 import myapp.nueralNet.Operand;
 
 import java.util.HashMap;

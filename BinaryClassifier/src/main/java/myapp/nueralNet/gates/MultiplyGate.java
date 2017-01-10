@@ -1,5 +1,6 @@
 package myapp.nueralNet.gates;
 
+import myapp.nueralNet.Gate;
 import myapp.nueralNet.Operand;
 
 /**
@@ -29,15 +30,6 @@ public class MultiplyGate implements Gate {
 
         operand0 = operands[0];
         operand1 = operands[1];
-
-//        try {
-//            Thread.sleep(1);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
-
-   //     System.out.println(operand0.getValue() + " * " + operand1.getValue() + " = " + operand0.getValue() * operand1.getValue());
 
         output = new Operand(operand0.getValue() * operand1.getValue(), 0);
 

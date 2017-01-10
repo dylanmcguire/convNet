@@ -1,8 +1,8 @@
 package myapp.nueralNet.networkBuilders;
 
-import myapp.nueralNet.GateGraphNode;
-import myapp.nueralNet.GraphNode;
-import myapp.nueralNet.NetworkGraph;
+import myapp.nueralNet.networkGraph.GateGraphNode;
+import myapp.nueralNet.networkGraph.GraphNode;
+import myapp.nueralNet.networkGraph.NetworkGraph;
 import myapp.nueralNet.Operand;
 import myapp.nueralNet.gates.AddGate;
 import myapp.nueralNet.gates.MultiplyGate;

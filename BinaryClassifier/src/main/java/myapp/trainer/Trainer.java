@@ -1,6 +1,6 @@
 package myapp.trainer;
 
-import myapp.nueralNet.NetworkGraph;
+import myapp.nueralNet.networkGraph.NetworkGraph;
 import myapp.nueralNet.Operand;
 
 import java.util.Collection;

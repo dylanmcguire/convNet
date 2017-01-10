@@ -1,6 +1,5 @@
-package myapp.nueralNet.gates;
+package myapp.nueralNet;
 
-import myapp.nueralNet.Operand;
 
 /**
  * @author  Dylan McGuire

@@ -1,4 +1,4 @@
-package myapp.trainer;
+package myapp.io;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -15,12 +15,12 @@ import java.util.Map;
  * This is shitty. Need to fix this up at some point.
  *
  */
-public class LabledImageProviderImpl implements LabledImageProvider{
+public class LabeledImageProviderImpl implements LabeledImageProvider {
 
     final Map<String, File> nameToFile = new HashMap<>();
 
 
-    public LabledImageProviderImpl(File dir) {
+    public LabeledImageProviderImpl(File dir) {
 
         for (File file : dir.listFiles()) {
             if (file.isDirectory()){
@@ -40,10 +40,10 @@ public class LabledImageProviderImpl implements LabledImageProvider{
     }
 
     @Override
-    public LabledImage getLabledImageByName(String name) throws IOException {
+    public LabeledImage loadLabeledImageByName(String name) throws IOException {
         final File file = nameToFile.get(name);
         final BufferedImage bufferedImage = ImageIO.read(file);
 
-        return new LabledImage(name.split("_")[0], bufferedImage);
+        return new LabeledImage(name.split("_")[0], bufferedImage);
     }
 }
