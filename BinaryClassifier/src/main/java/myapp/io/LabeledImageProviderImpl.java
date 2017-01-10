@@ -2,7 +2,6 @@ package myapp.io;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Collection;
@@ -11,10 +10,6 @@ import java.util.Map;
 
 /**
  * @author Dylan McGuire
- *
- *
- * This is shitty. Need to fix this up at some point.
- *
  */
 public class LabeledImageProviderImpl implements LabeledImageProvider {
 
@@ -25,6 +20,7 @@ public class LabeledImageProviderImpl implements LabeledImageProvider {
     public LabeledImageProviderImpl(File dir, ImageProvider imageProvider) {
         this.imageProvider = imageProvider;
 
+        //This is shitty. Expecting such a specific folder structure makes this very fragile.
         for (File file : dir.listFiles()) {
             if (file.isDirectory()){
                 String dirName = file.getName();

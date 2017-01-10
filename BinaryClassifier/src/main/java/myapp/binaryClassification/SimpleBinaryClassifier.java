@@ -30,20 +30,6 @@ public class SimpleBinaryClassifier {
 
     public static void main(String[] args) {
 
-//        final NetworkGraph networkGraph = new NetworkGraphImpl();
-//
-//        networkGraph.addNode(new OperandGraphNode("x", new Operand(3)));
-//        networkGraph.addNode(new OperandGraphNode("y", new Operand(-2)));
-//        networkGraph.addNode(new GateGraphNode(new MultiplyGate(), Arrays.asList("x", "y"), NetworkGraphImpl.FINAL_OUTPUT_NAME));
-//
-//        final Operand topNode = networkGraph.evaluate();
-//        System.out.println(topNode.getValue());
-//
-//        topNode.setGradient(1);
-//        networkGraph.backprop();
-//
-//        System.out.println(networkGraph.evaluate().getValue());
-
         final ImageConfig imageConfig = new ImageConfig(110, 110, 3);
         final NetworkGraph networkGraph = new NetworkGraphImpl();
         final NetworkBuilder networkBuilder = new ImageClassifyingNetworkBuilder(imageConfig);

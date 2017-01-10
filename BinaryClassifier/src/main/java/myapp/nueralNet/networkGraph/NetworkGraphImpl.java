@@ -43,12 +43,6 @@ public class NetworkGraphImpl implements NetworkGraph {
     }
 
 
-    @Override
-    public void replaceNodeByName(String name, GraphNode node) {
-        nameToNodeMap.put(name, node);
-    }
-
-
     private GraphNode getTopNode(){
         return getNodeByName(FINAL_OUTPUT_NAME);
     }

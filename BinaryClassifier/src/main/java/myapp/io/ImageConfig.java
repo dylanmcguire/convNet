@@ -26,6 +26,7 @@ public class ImageConfig {
         return maxWidth;
     }
 
+
     public int getNumberOfColorChannels() {
         return numberOfColorChannels;
     }
