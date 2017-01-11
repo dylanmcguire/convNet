@@ -1,6 +1,4 @@
-package myapp.io;
-
-import java.awt.image.BufferedImage;
+package myapp.io.image;
 
 /**
  * @author Dylan McGuire
@@ -8,16 +6,16 @@ import java.awt.image.BufferedImage;
 public class LabeledImage {
 
     private String label;
-    private BufferedImage image;
+    private ClassifiableImage image;
 
 
-    public LabeledImage(String label, BufferedImage image) {
+    public LabeledImage(String label, ClassifiableImage image) {
         this.label = label;
         this.image = image;
     }
 
 
-    public BufferedImage getImage() {
+    public ClassifiableImage getImage() {
         return image;
     }
 

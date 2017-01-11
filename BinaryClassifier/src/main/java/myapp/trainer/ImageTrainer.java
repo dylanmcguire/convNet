@@ -1,8 +1,8 @@
 package myapp.trainer;
 
-import myapp.classifier.ImageClassifier;
-import myapp.io.LabeledImage;
-import myapp.io.LabeledImageProvider;
+import myapp.classifier.Classifier;
+import myapp.io.image.LabeledImage;
+import myapp.io.image.LabeledImageProvider;
 import myapp.nueralNet.networkGraph.NetworkGraph;
 import myapp.nueralNet.Operand;
 
@@ -21,10 +21,10 @@ public class ImageTrainer implements Trainer{
     private int reps;
     private LabeledImageProvider labeledImageProvider;
     private String desiredLabel;
-    private ImageClassifier imageClassifier;
+    private Classifier imageClassifier;
 
 
-    public ImageTrainer(int reps, LabeledImageProvider labeledImageProvider, String desiredLabel, ImageClassifier imageClassifier) {
+    public ImageTrainer(int reps, LabeledImageProvider labeledImageProvider, String desiredLabel, Classifier imageClassifier) {
         this.reps = reps;
         this.labeledImageProvider = labeledImageProvider;
         this.desiredLabel = desiredLabel;
@@ -47,7 +47,7 @@ public class ImageTrainer implements Trainer{
 
                         if (labeledImage.getImage() != null) {
 
-                            final Operand operand = imageClassifier.classifyImage(labeledImage.getImage(), networkGraph, operands);
+                            final Operand operand = imageClassifier.classify(labeledImage.getImage(), networkGraph, operands);
 
                             System.out.println("Value: " + operand.getValue());
 
@@ -66,7 +66,7 @@ public class ImageTrainer implements Trainer{
                             networkGraph.backprop();
 
                             System.out.println("testing effect");
-                            final Operand secondPassOperand = imageClassifier.classifyImage(labeledImage.getImage(), networkGraph, operands);
+                            final Operand secondPassOperand = imageClassifier.classify(labeledImage.getImage(), networkGraph, operands);
 
                             System.out.println("Value: " + secondPassOperand.getValue());
 

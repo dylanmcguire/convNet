@@ -1,4 +1,4 @@
-package myapp.io;
+package myapp.io.image;
 
 import java.io.IOException;
 import java.util.Collection;

@@ -13,6 +13,4 @@ public interface NetworkGraph {
     void backprop();
 
     GraphNode getNodeByName(String name);
-
-    void replaceNodeByName(String name, GraphNode node);
 }
