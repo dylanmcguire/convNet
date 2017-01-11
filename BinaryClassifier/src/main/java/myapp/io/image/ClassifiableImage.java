@@ -11,9 +11,17 @@ import java.awt.image.BufferedImage;
 public class ClassifiableImage implements Classifiable{
 
     private final BufferedImage image;
+    private final String name;
 
-    public ClassifiableImage(BufferedImage image) {
+    public ClassifiableImage(BufferedImage image, String name) {
         this.image = image;
+        this.name = name;
+    }
+
+
+    @Override
+    public String getDescriptor() {
+        return "Image [" + name + "]";
     }
 
 

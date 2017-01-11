@@ -5,6 +5,8 @@ package myapp.classifier;
  */
 public interface Classifiable {
 
+    String getDescriptor();
+
     float[] getClassifiableData();
 
 }

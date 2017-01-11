@@ -8,7 +8,7 @@ import myapp.nueralNet.gates.MultiplyGate;
 /**
  * @author Dylan McGuire
  */
-public class SimpleOrchestrator {
+public class GateTest {
 
 
     public static void main(String[] args) {

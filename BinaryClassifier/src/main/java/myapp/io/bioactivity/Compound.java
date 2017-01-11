@@ -15,6 +15,12 @@ public class Compound implements Classifiable{
 
 
     @Override
+    public String getDescriptor(){
+        return "compound";
+    }
+
+
+    @Override
     public float[] getClassifiableData() {
 
         final float[] floats = new float[data.length];

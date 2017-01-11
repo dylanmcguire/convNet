@@ -1,5 +1,8 @@
 package myapp.io.image;
 
+import myapp.classifier.LabeledClassifiable;
+import myapp.io.LabeledClassifiableProvider;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -11,7 +14,7 @@ import java.util.Map;
 /**
  * @author Dylan McGuire
  */
-public class LabeledImageProviderImpl implements LabeledImageProvider {
+public class LabeledImageProviderImpl implements LabeledClassifiableProvider {
 
     private final Map<String, File> nameToFile = new HashMap<>();
     private final ImageProvider imageProvider;
@@ -34,16 +37,16 @@ public class LabeledImageProviderImpl implements LabeledImageProvider {
 
 
     @Override
-    public Collection<String> getAvailableImageNames() {
-        return nameToFile.keySet();
+    public LabeledClassifiable getLabeledClassifiableByIdentifier(String identifier) throws IOException {
+        final File file = nameToFile.get(identifier);
+        final ClassifiableImage bufferedImage = imageProvider.loadImage(file);
+        return new LabeledImage(identifier.split("_")[0], bufferedImage);
     }
 
 
     @Override
-    public LabeledImage loadLabeledImageByName(String name) throws IOException {
-        final File file = nameToFile.get(name);
-        final ClassifiableImage bufferedImage = imageProvider.loadImage(file);
-        return new LabeledImage(name.split("_")[0], bufferedImage);
+    public Collection<String> getLabeledClassifiableIdentifiers() throws IOException {
+        return nameToFile.keySet();
     }
 
 

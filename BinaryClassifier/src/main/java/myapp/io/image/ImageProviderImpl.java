@@ -1,7 +1,5 @@
 package myapp.io.image;
 
-import myapp.classifier.Classifiable;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,7 +22,7 @@ public class ImageProviderImpl implements ImageProvider{
     @Override
     public ClassifiableImage loadImage(File file) throws IOException {
         final BufferedImage bufferedImage = ImageIO.read(file);
-        return new ClassifiableImage(scaleImage(bufferedImage));
+        return new ClassifiableImage(scaleImage(bufferedImage), file.getParentFile().getName() + "_" + file.getName());
     }
 
 

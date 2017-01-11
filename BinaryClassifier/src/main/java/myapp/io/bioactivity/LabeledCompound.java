@@ -1,10 +1,13 @@
 package myapp.io.bioactivity;
 
 
+import myapp.classifier.Classifiable;
+import myapp.classifier.LabeledClassifiable;
+
 /**
  * @author Dylan McGuire
  */
-public class LabeledCompound {
+public class LabeledCompound implements LabeledClassifiable {
 
     private final String label;
     private final Compound compound;
@@ -21,7 +24,13 @@ public class LabeledCompound {
     }
 
 
+    @Override
     public String getLabel() {
         return label;
+    }
+
+    @Override
+    public Classifiable getClassifiable() {
+        return getCompound();
     }
 }

@@ -1,9 +1,12 @@
 package myapp.io.image;
 
+import myapp.classifier.Classifiable;
+import myapp.classifier.LabeledClassifiable;
+
 /**
  * @author Dylan McGuire
  */
-public class LabeledImage {
+public class LabeledImage implements LabeledClassifiable{
 
     private String label;
     private ClassifiableImage image;
@@ -15,12 +18,14 @@ public class LabeledImage {
     }
 
 
-    public ClassifiableImage getImage() {
-        return image;
+    @Override
+    public String getLabel() {
+        return label;
     }
 
 
-    public String getLabel() {
-        return label;
+    @Override
+    public Classifiable getClassifiable() {
+        return image;
     }
 }

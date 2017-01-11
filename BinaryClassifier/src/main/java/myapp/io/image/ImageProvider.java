@@ -1,6 +1,5 @@
 package myapp.io.image;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
