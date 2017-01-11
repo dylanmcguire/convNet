@@ -1,4 +1,4 @@
-package myapp.io;
+package myapp.io.image;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -42,7 +42,7 @@ public class LabeledImageProviderImpl implements LabeledImageProvider {
     @Override
     public LabeledImage loadLabeledImageByName(String name) throws IOException {
         final File file = nameToFile.get(name);
-        final BufferedImage bufferedImage = imageProvider.loadImage(file);
+        final ClassifiableImage bufferedImage = imageProvider.loadImage(file);
         return new LabeledImage(name.split("_")[0], bufferedImage);
     }
 

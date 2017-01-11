@@ -1,21 +1,17 @@
 package myapp.binaryClassification;
 
 
-import myapp.classifier.ImageClassifier;
-import myapp.classifier.ImageClassifierImpl;
-import myapp.io.ImageConfig;
-import myapp.io.ImageProvider;
-import myapp.io.ImageProviderImpl;
+import myapp.classifier.Classifier;
+import myapp.classifier.ClassifierImpl;
+import myapp.io.image.*;
 import myapp.nueralNet.networkGraph.NetworkGraph;
 import myapp.nueralNet.Operand;
 import myapp.nueralNet.networkBuilders.ImageClassifyingNetworkBuilder;
 import myapp.nueralNet.networkBuilders.NetworkBuilder;
 import myapp.nueralNet.networkGraph.NetworkGraphImpl;
 import myapp.trainer.ImageTrainer;
-import myapp.io.LabeledImageProviderImpl;
 import myapp.trainer.Trainer;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -34,7 +30,7 @@ public class SimpleBinaryClassifier {
         final NetworkGraph networkGraph = new NetworkGraphImpl();
         final NetworkBuilder networkBuilder = new ImageClassifyingNetworkBuilder(imageConfig);
         final Collection<Operand> inputs = networkBuilder.build(networkGraph);
-        final ImageClassifier imageClassifier = new ImageClassifierImpl();
+        final Classifier imageClassifier = new ClassifierImpl();
         final ImageProvider imageProvider = new ImageProviderImpl(imageConfig);
         final Trainer trainer = new ImageTrainer(
                 500,
@@ -61,10 +57,10 @@ public class SimpleBinaryClassifier {
             }
         });
         for (File file : butterflyFiles) {
-            final BufferedImage image;
+            final ClassifiableImage image;
             try {
                 image = imageProvider.loadImage(file);
-                final Operand operand = imageClassifier.classifyImage(image, networkGraph, inputs);
+                final Operand operand = imageClassifier.classify(image, networkGraph, inputs);
 
                 if (operand.getValue() >= .5) {
                     numCorrectIdentifications++;
@@ -86,10 +82,10 @@ public class SimpleBinaryClassifier {
             }
         });
         for (File file : buddhaFiles) {
-            final BufferedImage image;
+            final ClassifiableImage image;
             try {
                 image = imageProvider.loadImage(file);
-                final Operand operand = imageClassifier.classifyImage(image, networkGraph, inputs);
+                final Operand operand = imageClassifier.classify(image, networkGraph, inputs);
 
                 if (operand.getValue() >= .5) {
                     numMissIdentifications++;
@@ -108,9 +104,9 @@ public class SimpleBinaryClassifier {
             System.out.println("Enter the path to an image you would like to classify");
             String filePath = scanner.next();
             try {
-                final BufferedImage image = imageProvider.loadImage(new File(filePath));
+                final ClassifiableImage image = imageProvider.loadImage(new File(filePath));
 
-                Operand operand = imageClassifier.classifyImage(image, networkGraph, inputs);
+                Operand operand = imageClassifier.classify(image, networkGraph, inputs);
 
                 System.out.println(operand.getValue());
 

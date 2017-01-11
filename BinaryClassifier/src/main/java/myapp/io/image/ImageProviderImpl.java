@@ -1,4 +1,6 @@
-package myapp.io;
+package myapp.io.image;
+
+import myapp.classifier.Classifiable;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,9 +22,9 @@ public class ImageProviderImpl implements ImageProvider{
 
 
     @Override
-    public BufferedImage loadImage(File file) throws IOException {
+    public ClassifiableImage loadImage(File file) throws IOException {
         final BufferedImage bufferedImage = ImageIO.read(file);
-        return scaleImage(bufferedImage);
+        return new ClassifiableImage(scaleImage(bufferedImage));
     }
 
 

@@ -1,4 +1,4 @@
-package myapp.io;
+package myapp.io.image;
 
 /**
  * @author Dylan McGuire

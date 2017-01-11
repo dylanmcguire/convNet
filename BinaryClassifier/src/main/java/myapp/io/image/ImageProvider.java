@@ -1,4 +1,4 @@
-package myapp.io;
+package myapp.io.image;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,6 +9,6 @@ import java.io.IOException;
  */
 public interface ImageProvider {
 
-    BufferedImage loadImage(File file) throws IOException;
+    ClassifiableImage loadImage(File file) throws IOException;
 
 }

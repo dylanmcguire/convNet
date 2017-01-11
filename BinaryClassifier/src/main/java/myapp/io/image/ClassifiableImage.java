@@ -1,35 +1,25 @@
-package myapp.classifier;
+package myapp.io.image;
 
-import myapp.nueralNet.Operand;
-import myapp.nueralNet.networkGraph.NetworkGraph;
-import org.apache.commons.math3.analysis.function.Sigmoid;
+import myapp.classifier.Classifiable;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Collection;
 
 /**
  * @author Dylan McGuire
  */
-public class ImageClassifierImpl implements ImageClassifier{
+public class ClassifiableImage implements Classifiable{
+
+    private final BufferedImage image;
+
+    public ClassifiableImage(BufferedImage image) {
+        this.image = image;
+    }
 
 
     @Override
-    public Operand classifyImage(BufferedImage image, NetworkGraph networkGraph, Collection<Operand> operands) {
-        float[] flattenedImage = flattenImage(image);
-
-        int i = 0;
-        for (Operand operand : operands) {
-            operand.setValue(i < flattenedImage.length ? flattenedImage[i] : 0);
-            i++;
-        }
-
-        final Operand operand = networkGraph.evaluate();
-
-        final Sigmoid sigmoid = new Sigmoid();
-        operand.setValue( (float) sigmoid.value((double)operand.getValue()));
-
-        return operand;
+    public float[] getClassifiableData() {
+        return flattenImage(image);
     }
 
 
