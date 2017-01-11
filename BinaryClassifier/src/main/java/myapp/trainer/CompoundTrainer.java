@@ -36,7 +36,7 @@ public class CompoundTrainer implements Trainer{
         try {
             final ArrayList<LabeledCompound> labeledCompounds = new ArrayList<>(labeledCompoundProvider.getLabeledCompounds());
 
-            for (int pass = 0; pass < 25; pass++) {
+            for (int pass = 0; pass < 5; pass++) {
                 for (LabeledCompound labeledCompound : labeledCompounds){
                     System.out.println("=====================================================");
                     System.out.println("Training on compound");

@@ -58,7 +58,7 @@ public class LinearClassifyingNetworkBuilder implements NetworkBuilder {
 
         //need one more variable to tug on.
         networkGraph.addNode(new OperandGraphNode("c", new Operand(generateRandom())));
-        networkGraph.addNode(new GateGraphNode(new AddGate(), Arrays.asList(lastGateName, "c"), NetworkGraphImpl.FINAL_OUTPUT_NAME));
+        networkGraph.addNode(new GateGraphNode(new AddGate(), Arrays.asList(lastGateName, "c"), networkGraph.getFinalOutputName()));
 
         return inputOperands;
     }

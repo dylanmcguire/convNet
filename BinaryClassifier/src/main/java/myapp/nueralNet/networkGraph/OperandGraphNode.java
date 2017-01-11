@@ -32,12 +32,12 @@ public class OperandGraphNode implements GraphNode {
     }
 
     @Override
-    public Operand evaluateForward(NetworkGraph networkGraph) {
+    public Operand evaluateForward(Operand... operands) {
         return operand;
     }
 
     @Override
-    public void propogateBackward(NetworkGraph networkGraph) {
+    public void propagateBackward() {
         operand.incrementValue(operand.getGradient() * STEP_SIZE);
     }
 }

@@ -36,23 +36,13 @@ public class GateGraphNode implements GraphNode {
 
 
     @Override
-    public Operand evaluateForward(NetworkGraph networkGraph) {
-        final ArrayList<Operand> operands = new ArrayList<>();
-
-        for (String inputName : inputNames) {
-            operands.add(networkGraph.getNodeByName(inputName).evaluateForward(networkGraph));
-        }
-
-        return gate.forward(operands.toArray(new Operand[operands.size()]));
+    public Operand evaluateForward(Operand... operands) {
+        return gate.forward(operands);
     }
 
 
     @Override
-    public void propogateBackward(NetworkGraph networkGraph) {
+    public void propagateBackward() {
         gate.backward();
-
-        for (String inputName : inputNames) {
-            networkGraph.getNodeByName(inputName).propogateBackward(networkGraph);
-        }
     }
 }

@@ -13,7 +13,7 @@ public interface GraphNode {
 
     String getOutputName();
 
-    Operand evaluateForward(NetworkGraph networkGraph);
+    Operand evaluateForward(Operand... operands);
 
-    void propogateBackward(NetworkGraph networkGraph);
+    void propagateBackward();
 }

@@ -36,7 +36,7 @@ public class ImageTrainer implements Trainer{
 
         final ArrayList<String> labeledImageNames = new ArrayList<>(labeledImageProvider.getAvailableImageNames());
 
-        for (int pass = 0; pass < 25; pass++) {
+        for (int pass = 0; pass < 5; pass++) {
             for (String imageName : labeledImageNames){
                 try {
                     System.out.println("=====================================================");
